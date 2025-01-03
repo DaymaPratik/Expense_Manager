@@ -14,7 +14,7 @@ function Register({toggleForm}) {
       const registerUserFunction=async(e)=>{
         e.preventDefault();
        try {
-        const res=await fetch("http://localhost:8080/api/user/register",{
+        const res=await fetch("https://expense-manager-e0ha.onrender.com/api/user/register",{
           method: "POST",
           headers: {
             "Content-Type": "application/json",

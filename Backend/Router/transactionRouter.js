@@ -20,10 +20,8 @@ router.post("/api/user/saveTransaction", async (req, res) => {
 // Get all transactions for a user
 router.get("/api/transactions/:phone", async (req, res) => {
   try {
-    const { phone } = req.params;
-    const transactions = await Transaction.find({ transactionId: phone });
-    console.log(transactions);
-    
+    const { phone } = req.params; 
+    const transactions = await Transaction.find({ transactionId: phone }); 
     res.status(200).json(transactions || []);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch transactions", error });

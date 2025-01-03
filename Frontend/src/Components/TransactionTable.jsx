@@ -8,24 +8,26 @@ const TransactionTable = () => {
   const [error, setError] = useState(null);
   useEffect(() => {
     const fetchTransactions = async () => {
-      try {
-        const response = await fetch(`http://localhost:8080/api/transactions/${user.phone}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        });
-        const data = await response.json();
-        setTransactions(data); // Update state with fetched transactions
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to fetch transactions.");
-        setLoading(false);
-      }
-    };
-  
+        try {
+          const response = await fetch(
+            `http://localhost:8080/api/transactions/${user.phone}`, // Ensure user.phone matches transactionId in the database
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+            }
+          );
+          const data = await response.json();
+          setTransactions(data); // Update state with fetched transactions
+          setLoading(false);
+        } catch (err) {
+          console.error(err);
+          setError("Failed to fetch transactions.");
+          setLoading(false);
+        }
+      };
     fetchTransactions();
   }, [user.phone]);
 
@@ -35,7 +37,8 @@ const TransactionTable = () => {
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Transactions</h2>
-      <table className="w-full border-collapse border border-gray-200 shadow-lg">
+    
+        <table className="w-full border-collapse border border-gray-200 shadow-lg">
         <thead className="bg-blue-600 text-white">
           <tr>
             <th className="px-4 py-2">Date</th>

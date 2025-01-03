@@ -6,7 +6,7 @@ const cors=require('cors');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://expense-manager-three-flax.vercel.app',
     credentials: true,
     methods: ['POST', 'GET', 'PUT', 'DELETE'], 
 }));
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(userRoutes);
 app.use(transactionRouter);
 mongoose
-  .connect("mongodb://localhost:27017/Expense_Tracker_App")
+  .connect("mongodb+srv://pratikdayma45:LzJlylhbT6B09Fqd@cluster0.cpq5ooo.mongodb.net/Expense_Tracker_App")
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(8080, () => {
